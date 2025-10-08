@@ -15,6 +15,163 @@
 </head>
 <body class="bg-gray-50">
 
+<nav class="bg-white w-full shadow-md border relative z-50">
+  <div class="container mx-auto px-4">
+    <!-- DESKTOP NAVBAR -->
+    <div class="hidden lg:flex justify-between items-center py-4 relative">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <img src="https://www.ds3comunicaciones.com/mikrotik/images/Logo1.jpg" alt="NetPeru Logo" class="h-12 mr-3">
+      </div>
+
+      <!-- Información de contacto -->
+      <div class="flex space-x-8 text-black font-bold">
+        <div class="flex items-center">
+          <i class="fas fa-phone-alt mr-2 text-black"></i>
+          <div>
+            <p class="text-sm">533-4339</p>
+            <p class="text-sm">994-428-965</p>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-phone-alt mr-2 text-black"></i>
+          <div>
+            <p class="text-sm">99653-3223</p>
+            <p class="text-sm">937-514-867</p>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-envelope mr-2 text-black"></i>
+          <span class="text-sm">netperu100@hotmail.com</span>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-map-marker-alt mr-2 text-black"></i>
+          <span class="text-sm">Lima, PERÚ</span>
+        </div>
+        <div>
+          <img src="https://www.ds3comunicaciones.com/cisco/images/cisco-gif.gif" alt="Cisco Logo" class="h-10">
+        </div>
+      </div>
+
+      <!-- Botón de búsqueda -->
+      <div class="relative flex items-center">
+        <button id="search-button" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+          <i class="fas fa-search text-black"></i>
+        </button>
+
+        <!-- Campo de búsqueda (oculto por defecto) -->
+        <div id="search-box" class="hidden absolute right-0 top-full mt-2 bg-white border rounded-md shadow-lg p-2 flex items-center space-x-2 z-50">
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Buscar..."
+            class="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring focus:ring-blue-200"
+          />
+          <button
+            id="search-confirm"
+            class="hidden bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700 transition"
+          >
+            Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE NAVBAR -->
+    <div class="lg:hidden flex flex-col gap-2 relative z-50 font-bold text-black">
+      <!-- Navbar superior -->
+      <div class="flex justify-between items-center py-2">
+        <!-- Izquierda -->
+        <div class="flex gap-2 items-center">
+          <button id="mobile-menu-button" class="p-2 rounded-full hover:bg-gray-300 transition-colors">
+            <i class="fas fa-bars text-black"></i>
+          </button>
+
+          <!-- Logo -->
+          <div class="flex items-center gap-2">
+            <img src="https://www.ds3comunicaciones.com/mikrotik/images/Logo1.jpg" alt="NetPeru Logo" class="h-10">
+          </div>
+        </div>
+
+        <!-- Botón buscar -->
+        <button id="mobile-search-button" class="p-2 rounded-md hover:bg-gray-300 transition-colors border border-black flex gap-3 items-center">
+          <i class="fas fa-search text-black"></i>
+        </button>
+      </div>
+
+      <!-- Cuadro de búsqueda móvil -->
+      <div id="mobile-search-box"
+           class="hidden fixed top-16 left-0 w-full bg-white border-t border-gray-300 px-2 py-2 shadow-lg z-[9999] flex items-center gap-2">
+        <input id="mobile-search-input"
+               type="text"
+               placeholder="Buscar..."
+               class="w-full border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring focus:ring-blue-200" />
+        <button id="mobile-search-confirm"
+                class="hidden bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700 transition">
+          Buscar
+        </button>
+      </div>
+
+      <!-- Información inferior -->
+      <div class="py-2 pl-3 text-sm flex flex-col gap-1">
+        <div class="flex flex-wrap items-center gap-x-4">
+          <div class="flex items-center gap-1">
+            <i class="fas fa-phone-alt text-black"></i>
+            <p>996533223</p>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-phone-alt text-black"></i>
+            <p>994428965</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-1">
+          <i class="fas fa-envelope text-black"></i>
+          <span>netperu100@hotmail.com</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <i class="fas fa-map-marker-alt text-black"></i>
+          <span>Lima, PERÚ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- SCRIPT -->
+<script>
+  // --- Desktop Search ---
+  const searchButton = document.getElementById("search-button");
+  const searchBox = document.getElementById("search-box");
+  const searchInput = document.getElementById("search-input");
+  const searchConfirm = document.getElementById("search-confirm");
+
+  searchButton.addEventListener("click", () => {
+    searchBox.classList.toggle("hidden");
+    searchInput.focus();
+  });
+
+  searchInput.addEventListener("input", () => {
+    searchConfirm.classList.toggle("hidden", searchInput.value.trim() === "");
+  });
+
+  // --- Mobile Search ---
+  const mobileSearchButton = document.getElementById("mobile-search-button");
+  const mobileSearchBox = document.getElementById("mobile-search-box");
+  const mobileSearchInput = document.getElementById("mobile-search-input");
+  const mobileSearchConfirm = document.getElementById("mobile-search-confirm");
+
+  mobileSearchButton.addEventListener("click", () => {
+    mobileSearchBox.classList.toggle("hidden");
+    mobileSearchInput.focus();
+  });
+
+  mobileSearchInput.addEventListener("input", () => {
+    mobileSearchConfirm.classList.toggle("hidden", mobileSearchInput.value.trim() === "");
+  });
+</script>
+
+
+
 <!-- SUBMENU DE MARCA DEPENDIENDO DEL PRODUCTO -->
   <nav class="bg-white border-b border-gray-200 shadow-sm">
     <div class="relative">
